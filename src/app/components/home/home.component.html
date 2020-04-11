@@ -1,0 +1,92 @@
+<div class="container p-5">
+    <div class="">
+        <h1 class="text-center colorFont">{{cantidadRegistros}} Usuarios Registrados</h1>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" (click)="agregarUsuario()">
+            Agregar Usuario
+        </button>
+    </div>
+
+    <br>
+    <br>
+
+
+    <div class="row">
+        <div class="col-6 p-4">
+            <label class="colorFont w-100">Iniciar en</label>
+            <input type="number" class="w-20" [(ngModel)]="desde" name="desde">
+            <label class="colorFont w-100">Hasta</label>
+            <input type="number" class="w-20" [(ngModel)]="limite" name="limite">
+        </div>
+
+        <div class="col-6">
+            <button class="btn float-right btn-primary mb-3" type="button" (click)="getUsers()">
+                    aceptar
+            </button>
+        </div>
+    </div>
+
+    <div class="row p-3">
+        <div class="col">
+            <label>Buscar Usuaro</label>
+            <input type="text" class="w-100 " #termino (keyup)="buscarUsuarios(termino.value)">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+
+            <table class="table colorFont">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> id </th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">google</th>
+                        <th scope="col">tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <th scope="row"> {{usuario._id}} </th>
+                        <td>
+                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text">
+                        </td>
+                        <td> {{usuario.role}} </td>
+                        <td>
+                            <label *ngIf="usuario.google" class="badge badge-info">Google</label>
+                            <label *ngIf="!usuario.google" class="badge badge-primary">Normal</label>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-block" (click)="borrarUsuario(usuario._id)">
+                        borrar
+                    </button>
+                            <button class="btn btn-warning btn-block" (click)="actualizarUsuario(usuario)">
+                        Actualizar
+                    </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button (click)="cambiarDesde(-5)" class="btn btn-primary colorFont" type="button">
+                    Ant
+            </button>
+            <button (click)="cambiarDesde(5)" class="btn btn-primary colorFont" type="button">
+                    Sig
+            </button>
+        </div>
+    </div>
+
+
+</div>

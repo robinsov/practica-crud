@@ -1,0 +1,57 @@
+<div class="fondo-negro animated fadeIn" [ngClass]="_modalService.oculto">
+    <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+
+                <div class="modal-body">
+                    <form #f="ngForm">
+                        <div class="tab-pane active">
+                            <span *ngIf="f.submitted && f.controls['nombre'].errors" class="text-danger animated fadeIn">El correo es obligatorio</span>
+                            <div class="component">
+                                <!-- nombre input-->
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre de Usuario" class="form-control input-md" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span *ngIf="f.submitted && f.controls['email'].errors" class="text-danger animated fadeIn">El email es obligatorio</span>
+                            <div class="component">
+                                <!-- correo input-->
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="email" [(ngModel)]="email" name="email" placeholder="Correo" class="form-control input-md" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">El email es obligatorio</span>
+                            <div class="component">
+                                <!-- password input-->
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" class="form-control input-md" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button (click)="crearUsuario(f)" type="submit" class="btn btn-primary">Agregar Usuario</button>
+                    <button (click)="cerrarModal()" type="button" class="btn btn-secondary">
+            Cerrar
+          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
