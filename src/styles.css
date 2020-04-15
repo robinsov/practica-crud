@@ -105,3 +105,11 @@ input:focus {
 .oculto {
     display: none;
 }
+
+.w150 {
+    width: 150px;
+}
+
+.cursor {
+    cursor: pointer;
+}

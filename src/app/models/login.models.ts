@@ -2,10 +2,13 @@ export class UsuarioModel {
 
     email: string;
     password: string;
-
-    constructor(email: string, password:string){
-        this.email = email;
-        this.password = password;
+    nombre?: string;
+    
+    constructor( email:string, password:string, nombre?:string,){
+        this.email = email
+        this.password = password
+        this.nombre = nombre
     }
+    
 
 }

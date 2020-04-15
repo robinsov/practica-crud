@@ -1,4 +1,10 @@
 <div class="container p-5">
+
+    <div class="">
+        <h4> Bienvenido </h4>
+        <h5 class="badge badge-primary"> {{nombre}} </h5>
+    </div>
+
     <div class="">
         <h1 class="text-center colorFont">{{cantidadRegistros}} Usuarios Registrados</h1>
     </div>
@@ -42,24 +48,28 @@
             <table class="table colorFont">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"> id </th>
+                        <th scope="col"> perfil </th>
                         <th scope="col">nombre</th>
                         <th scope="col">Rol</th>
                         <th scope="col">google</th>
+                        <th scope="col">email</th>
                         <th scope="col">tools</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuarios">
-                        <th scope="row"> {{usuario._id}} </th>
+                    <tr *ngFor="let usuario of usuarios; let i = index">
                         <td>
-                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text">
+                            <img [src]="usuario.img | imagen" (click)="cambiarImagen(usuario)" class="w150 cursor">
+                        </td>
+                        <td>
+                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="w150">
                         </td>
                         <td> {{usuario.role}} </td>
                         <td>
                             <label *ngIf="usuario.google" class="badge badge-info">Google</label>
                             <label *ngIf="!usuario.google" class="badge badge-primary">Normal</label>
                         </td>
+                        <td> {{usuario.email}} </td>
                         <td>
                             <button class="btn btn-danger btn-block" (click)="borrarUsuario(usuario._id)">
                         borrar
@@ -78,12 +88,14 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-md-2">
             <button (click)="cambiarDesde(-5)" class="btn btn-primary colorFont" type="button">
-                    Ant
+                    Anterior
             </button>
+        </div>
+        <div class="col-md-2">
             <button (click)="cambiarDesde(5)" class="btn btn-primary colorFont" type="button">
-                    Sig
+                    Siguiente
             </button>
         </div>
     </div>

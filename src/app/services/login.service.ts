@@ -7,6 +7,8 @@ import { UserModel } from '../models/usuario.model';
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +23,7 @@ export class LoginService {
     token: this.token
   });
 
+
   constructor(private http: HttpClient) { }
 
   login(usuario: UsuarioModel){
@@ -33,6 +36,16 @@ export class LoginService {
       map( resp => {
         this.cantidadRegistros = resp['cuantos'];
         console.log(this.cantidadRegistros);
+         return resp['usuarios'];
+      }) )
+  }
+
+  getUsersAll(){
+    return this.http.get(`${this.url}/usuario`, {headers: this.headers}).pipe( 
+      map( resp => {
+        this.cantidadRegistros = resp['cuantos'];
+        console.log(this.cantidadRegistros);
+        console.log(resp['usuarios']);
          return resp['usuarios'];
       }) )
   }
@@ -73,4 +86,16 @@ export class LoginService {
          return usuariosEncontrados;
       }) )
   }
+
+
+  cambiarImagen(usuario: UserModel, archivo: FormData){
+    let url = `http://localhost:3000/upload/usuarios/${usuario._id}`;
+
+    
+
+
+    return this.http.put(`${url}`, archivo);
+  }
+
+
 }

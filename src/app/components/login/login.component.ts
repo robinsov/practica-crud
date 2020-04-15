@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   recordarme = false;
 
+
   constructor(private _loginService: LoginService,
               private router:Router) { }
 
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
       }
 
       localStorage.setItem('token', resp.token);
+      localStorage.setItem('nombre', resp.Usuario.nombre);
 
 
       this.router.navigate(['/home']);
@@ -51,6 +53,5 @@ export class LoginComponent implements OnInit {
       console.log(err.error.message);
     });
   }
-
 
 }
