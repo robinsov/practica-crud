@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Registrar Usuario</h5>
                     <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -16,7 +16,7 @@
                             <div class="component">
                                 <!-- nombre input-->
                                 <div class="form-group">
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre de Usuario" class="form-control input-md" required />
                                     </div>
                                 </div>
@@ -26,7 +26,7 @@
                             <div class="component">
                                 <!-- correo input-->
                                 <div class="form-group">
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <input type="email" [(ngModel)]="email" name="email" placeholder="Correo" class="form-control input-md" required />
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                             <div class="component">
                                 <!-- password input-->
                                 <div class="form-group">
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" class="form-control input-md" required />
                                     </div>
                                 </div>

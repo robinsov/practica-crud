@@ -1,54 +1,36 @@
 <div class="container p-5">
-
     <div class="">
-        <h4> Bienvenido </h4>
-        <h5 class="badge badge-primary"> {{nombre}} </h5>
+        <h4>Bienvenido</h4>
+        <h5 class="badge badge-primary">{{ nombre }}</h5>
     </div>
 
     <div class="">
-        <h1 class="text-center colorFont">{{cantidadRegistros}} Usuarios Registrados</h1>
+        <h1 class="text-center"> {{cantidadRegistros}} Usuarios registrados</h1>
+
     </div>
 
-    <div>
+    <div style="text-align: right;">
         <button class="btn btn-primary" (click)="agregarUsuario()">
-            Agregar Usuario
-        </button>
+      Agregar Usuario
+    </button>
     </div>
 
-    <br>
-    <br>
-
-
-    <div class="row">
-        <div class="col-6 p-4">
-            <label class="colorFont w-100">Iniciar en</label>
-            <input type="number" class="w-20" [(ngModel)]="desde" name="desde">
-            <label class="colorFont w-100">Hasta</label>
-            <input type="number" class="w-20" [(ngModel)]="limite" name="limite">
-        </div>
-
-        <div class="col-6">
-            <button class="btn float-right btn-primary mb-3" type="button" (click)="getUsers()">
-                    aceptar
-            </button>
-        </div>
-    </div>
+    <br />
+    <br />
 
     <div class="row p-3">
         <div class="col">
             <label>Buscar Usuaro</label>
-            <input type="text" class="w-100 " #termino (keyup)="buscarUsuarios(termino.value)">
+            <input type="text" class="w-100" #termino (keyup)="buscarUsuarios(termino.value)" />
         </div>
     </div>
 
-
     <div class="row">
         <div class="col">
-
             <table class="table colorFont">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"> perfil </th>
+                        <th scope="col">perfil</th>
                         <th scope="col">nombre</th>
                         <th scope="col">Rol</th>
                         <th scope="col">google</th>
@@ -57,48 +39,60 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuarios; let i = index">
+                    <tr *ngFor="let usuario of usuarios | paginador: page_size:page_number">
+                        <!-- <tr *ngFor="let usuario of usuarios"> -->
                         <td>
-                            <img [src]="usuario.img | imagen" (click)="cambiarImagen(usuario)" class="w150 cursor">
+                            <img [src]=" usuario.img | imagen " (click)="cambiarImagen(usuario) " class="w150 cursor " />
                         </td>
                         <td>
-                            <input [(ngModel)]="usuario.nombre" name="nombre" type="text" class="w150">
+                            <input [(ngModel)]="usuario.nombre " name="nombre " type="text " class="w150 " />
                         </td>
-                        <td> {{usuario.role}} </td>
                         <td>
-                            <label *ngIf="usuario.google" class="badge badge-info">Google</label>
-                            <label *ngIf="!usuario.google" class="badge badge-primary">Normal</label>
+                            <input [(ngModel)]="usuario.role " name="role" type="text " class="w150 " />
                         </td>
-                        <td> {{usuario.email}} </td>
                         <td>
-                            <button class="btn btn-danger btn-block" (click)="borrarUsuario(usuario._id)">
-                        borrar
-                    </button>
-                            <button class="btn btn-warning btn-block" (click)="actualizarUsuario(usuario)">
-                        Actualizar
-                    </button>
-                        </td>
-                    </tr>
+                            <label *ngIf="usuario.google " class="badge badge-info ">Google</label
+              >
+              <label *ngIf="!usuario.google " class="badge badge-primary "
+                >Normal</label
+              >
+            </td>
+            <td>{{ usuario.email }}</td>
+            <td>
+              <button
+                class="btn btn-danger btn-block "
+                (click)="borrarUsuario(usuario._id) "
+              >
+              <i class="fa fa-trash"></i>
+              </button>
+              <button
+                class="btn btn-warning btn-block "
+                (click)="actualizarUsuario(usuario) "
+              >
+              <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-                </tbody>
+      <!-- <pagination
+        [boundaryLinks]="true "
+        [totalItems]="usuarios.length "
+        previousText="&lsaquo; "
+        nextText="&rsaquo; "
+        firstText="&laquo; "
+        lastText="&raquo; "
+      >
+      </pagination> -->
 
-            </table>
-
-        </div>
+      <mat-paginator
+        [length]="usuarios.length "
+        [pageSize]="page_size "
+        [pageSizeOptions]="pageSizeOptions "
+        (page)="handlePage($event) "
+      >
+      </mat-paginator>
     </div>
-
-    <div class="row">
-        <div class="col-md-2">
-            <button (click)="cambiarDesde(-5)" class="btn btn-primary colorFont" type="button">
-                    Anterior
-            </button>
-        </div>
-        <div class="col-md-2">
-            <button (click)="cambiarDesde(5)" class="btn btn-primary colorFont" type="button">
-                    Siguiente
-            </button>
-        </div>
-    </div>
-
-
+  </div>
 </div>

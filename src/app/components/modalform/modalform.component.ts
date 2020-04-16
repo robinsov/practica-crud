@@ -40,6 +40,8 @@ export class ModalformComponent implements OnInit {
     this._LoginService.crearUsuario(usuario).subscribe( resp => {
       this._modalService.notificacion.emit(resp);
       this._modalService.ocultarModal();
+     // location.reload();
+     
     })
   }
 

@@ -6,9 +6,6 @@ import { map } from 'rxjs/operators';
 import { UserModel } from '../models/usuario.model';
 
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,21 +28,10 @@ export class LoginService {
   }
 
 
-  getUsers(desde?: number, limite?:number ){
-    return this.http.get(`${this.url}/usuario?desde=${desde}&limite=${limite}`, {headers: this.headers}).pipe( 
-      map( resp => {
-        this.cantidadRegistros = resp['cuantos'];
-        console.log(this.cantidadRegistros);
-         return resp['usuarios'];
-      }) )
-  }
-
-  getUsersAll(){
+  getUsers(){
     return this.http.get(`${this.url}/usuario`, {headers: this.headers}).pipe( 
       map( resp => {
         this.cantidadRegistros = resp['cuantos'];
-        console.log(this.cantidadRegistros);
-        console.log(resp['usuarios']);
          return resp['usuarios'];
       }) )
   }

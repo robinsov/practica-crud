@@ -12,6 +12,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ModalformComponent } from './components/modalform/modalform.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { RegisterComponent } from './components/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { PaginadorPipe } from './pipes/paginador.pipe';
 
 
 @NgModule({
@@ -21,15 +25,18 @@ import { RegisterComponent } from './components/register/register.component';
     LoginComponent,
     ModalformComponent,
     ImagenPipe,
-    RegisterComponent
+    RegisterComponent,
+    PaginadorPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
-
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
   ],
+
   providers: [
   ],
   bootstrap: [AppComponent]
